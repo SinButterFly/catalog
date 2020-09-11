@@ -7,13 +7,15 @@ $photo = $_POST['photo'];
 $cat_id = $_POST['cat_id'];
 
 $pdo->query("INSERT INTO `products`(`name`,desc_p,price,photo,cat_id)VALUE ('$name','$desc_p','$price', '$photo', '$cat_id')");
+$stmt1 = $pdo->query('SELECT LAST_INSERT_ID() AS id FROM products');
+$id = $stmt1->fetch();
 
 ?>
 <form action="product.php" method="post">
     <input type="text" name="name" placeholder="Имя">
     <input type="text" name="desc_p" placeholder="Описание">
     <input type="number" name="price" placeholder="Цена">
-    <input type="file" name="photo">
+    <input type="text" name="photo">
     <select name="cat_id"  title="Категории">
         <?php
         require_once 'db_connect.php';

@@ -14,16 +14,24 @@
 <?php
 
 require_once 'db_connect.php';
-$stmt = $pdo->query("SELECT * FROM `products` INNER JOIN `categories` ON categories.id_cat = products.cat_id");
-$product = $stmt->fetch();
-echo "<div>";
+$stmt = $pdo->query("SELECT * FROM `products` JOIN `categories` ON categories.id_cat = products.cat_id");
+while ($row = $stmt->fetch()) {
+    echo "<div>";
 
-    echo $product['name'];
-    echo $product['desc_p'];
-    echo $product['price'];
-    echo "<img src=".$product['photo'].">";
+        echo $row['name'];
+        echo '<br>';
+        echo $row['desc_p'];
+        echo '<br>';
+        echo $row['price'];
+        echo '<br>';
+        echo "<img src=".$row['photo']." height=200px;weight=200px>";
+        echo '<br>';
+        echo $row['name_cat'];
+        echo '<hr>';
+        echo "<form action='delete.php' method='post'><input type='submit'></form>";
 
-echo "</div>";
+    echo "</div>";
+}
 
 ?>
 

@@ -1,17 +1,23 @@
 <?php
 require_once 'db_connect.php';
-$name = $_POST['name'];
-$desc_p = $_POST['desc_p'];
-$price = $_POST['price'];
-$photo = $_POST['photo'];
-$cat_id = $_POST['cat_id'];
+if (isset($_POST['submit'])){
+    $name = $_POST['name'];
+    $desc_p = $_POST['desc_p'];
+    $price = $_POST['price'];
+    $photo = $_POST['photo'];
+    $cat_id = $_POST['cat_id'];
+    $id=$_GET['id'];
+    echo $name;
+}
 
-$pdo->query("INSERT INTO `products`(`name`,desc_p,price,photo,cat_id)VALUE ('$name','$desc_p','$price', '$photo', '$cat_id')");
 
+
+    $pdo->query("UPDATE `products` SET name= ".$name."
+                      WHERE  id_prod=".$id);
+var_dump($pdo);
 
 ?>
-
-<form action="product.php" method="post">
+<form action="edit.php" method="post">
     <input type="text" name="name" placeholder="Имя">
     <input type="text" name="desc_p" placeholder="Описание">
     <input type="number" name="price" placeholder="Цена">

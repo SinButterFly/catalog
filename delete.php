@@ -1,9 +1,9 @@
 <?php
 require_once 'db_connect.php';
-if(isset($_GET['id']))
-{
-
-    $query ="DELETE FROM products WHERE id = '$id'";
+$id=$_GET['id'];
 
 
-}
+$pdo->query("DELETE FROM products WHERE id_prod =".$id);
+
+?>
+<a href="index.php">Главная</a>
